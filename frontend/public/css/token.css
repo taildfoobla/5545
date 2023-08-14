@@ -1,0 +1,170 @@
+:root{
+    --primary-text-color:white;
+    --second-text-color:#14B8A6;
+    --third-text-color:#D14343;
+    --fourth-text-color:#A0AEC0;
+}
+
+
+p{
+    margin:0;
+}
+
+
+/* .MuiTableCell-root.MuiTableCell-head{
+    min-width: 80px;
+} */
+
+.token-filter-wrapper{
+    display:flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 10px;
+    gap:10px;
+}
+
+.token-filter{
+    display:flex;
+    align-items: center;
+    padding:6px 20px;
+    border-radius: 30px;
+    border: 1px solid #374151;
+    height: fit-content;
+    gap:8px;
+}
+
+.token-filter img{
+    width: 20px;
+    height: 20px;
+}
+
+.token-filter p{
+    font-size: 15px;
+    margin: 0;
+}
+
+.small-icon{
+    display:flex;
+    gap:5px;
+}
+
+.percent-price{
+    color: var(--second-text-color)
+}
+
+.ats{
+    color:var(--second-text-color)
+}
+
+.rsi-status{
+    color:var(--second-text-color)
+}
+
+.fear-greed-index{
+    width: 100%;
+    height: 100%;
+    display:block;
+    overflow: hidden;
+    position: relative;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:10px;
+}
+
+.fear-greed-text.fear{
+    color:#D14343;
+ 
+}
+
+.fear{
+    text-align: center;
+    z-index: 12;
+}
+
+.progress-wrapper{
+    position: absolute;
+    top:40%;
+    left:0;
+    height: 30px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.progress{
+    position: absolute;
+    top:0;
+    left:50%;
+    transform: translateX(-50%) rotate(90deg);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    z-index: 10;
+}
+
+
+.progress:before{
+    content: "";
+    position:absolute;
+    top:7.4px;
+    left:7.4px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #111827;
+    z-index: 11;
+}
+
+.cex-progress-wrapper{
+    width: 100%;
+    height: 8px;
+    border-radius: 8px;
+    background-color: #1c2862;
+}
+.cex-progress{
+    width: 50%;
+    height: 8px;
+    border-radius: 8px 0 0 8px;
+    background-color: #7582EB;
+}
+.cex-progress.full{
+    border-radius: 8px;
+}
+
+.cex-ratio{
+    margin-top: 8px;
+    text-align: end;
+}
+
+.total{
+    color:var(--fourth-text-color)
+}
+
+.link{
+    color: var(--fourth-text-color);
+}
+
+.inactive-breadcrumbs{
+    color: #7582EB;
+}
+
+.chart-container{
+    height: fit-content;
+}
+
+.token-info{
+    position: absolute;
+    top:5px;
+    left:5px;
+    z-index: 99;
+    font-size: 13px;
+}
+
+.token-name span{
+    color:#2962FF
+}
+
+.token-volume span{
+    color:#14B8A6
+}
