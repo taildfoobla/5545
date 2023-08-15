@@ -5,6 +5,7 @@ export default function ChartTwo(props) {
     const {
         data,
         volumeData,
+        atsData,
         name,
         symbol,
         colors: {
@@ -15,7 +16,8 @@ export default function ChartTwo(props) {
           areaBottomColor = "transparent",
         } = {},
       } = props;
-    
+    const firtColor = "#2962FF"
+    const secondColor="#26a69a";
       const chartTwoContainerRef = useRef();
     
       useEffect(() => {
@@ -24,6 +26,12 @@ export default function ChartTwo(props) {
         };
     
         const chartTwo = createChart(chartTwoContainerRef.current, {
+          rightPriceScale: {
+            visible: true,
+          },
+          leftPriceScale: {
+            visible: true,
+          },
           layout: {
             background: { type: ColorType.Solid, color: backgroundColor },
             textColor,
@@ -38,7 +46,7 @@ export default function ChartTwo(props) {
             horzLines: { color: "#2D3748" },
           },
         });
-        const lineSeries = chartTwo.addLineSeries({ color: "#2962FF" });
+        const lineSeries = chartTwo.addLineSeries({ color: firtColor });
         lineSeries.setData(data);
     
         // const volumeSeries = chartTwo.addHistogramSeries({
@@ -61,6 +69,11 @@ export default function ChartTwo(props) {
         // });
         // volumeSeries.setData(volumeData)
     
+        const volumeSeries = chartTwo.addHistogramSeries({ priceScaleId: 'left',color:secondColor });
+        
+        volumeSeries.setData(atsData);
+
+
         chartTwo.timeScale().fitContent();
     
         window.addEventListener("resize", handleResize);
@@ -85,6 +98,16 @@ export default function ChartTwo(props) {
         <p className="token-volume">Vol {symbol} <span>189</span> </p>
         <p className="token-name">{name}/U.S. Dollar, 1D, {symbol} <span>29424 +70 (+0.24%)</span> </p>
         <p className="token-volume">Vol {symbol} <span>189</span> </p>
+      </div>
+      <div className="chart-info">
+        <div className="chart-info-item">
+          <div className="chart-info-item-color" style={{backgroundColor:firtColor}}></div>
+          <div className="chart-info-item-name">Price</div>
+        </div>
+        <div className="chart-info-item">
+          <div className="chart-info-item-color" style={{backgroundColor:secondColor}}></div>
+          <div className="chart-info-item-name">ATS</div>
+        </div>
       </div>
       </div>;
 }

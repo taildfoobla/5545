@@ -22,12 +22,11 @@ import {
   Breadcrumbs,
   CardContent,
 } from "@mui/material";
-import { ArrowRight as ArrowRightIcon } from "../../../icons/arrow-right";
-import { PencilAlt as PencilAltIcon } from "../../../icons/pencil-alt";
 import { getInitials } from "../../../utils/get-initials";
 import { Scrollbar } from "../../scrollbar";
 import Image from "next/image";
 import Star from "../../../../public/static/icons/star.svg";
+
 
 
 export const TokenListTable = (props) => {
@@ -171,7 +170,7 @@ export const TokenListTable = (props) => {
           >
             <TableRow>
               <TableCell align="center"></TableCell>
-              <TableCell padding="checkbox">#</TableCell>
+              <TableCell padding="0">#</TableCell>
               <TableCell>NAME</TableCell>
               <TableCell align="right">PRICE</TableCell>
               <TableCell align="right" style={{minWidth:"80px"}}>ATS <Image src="/static/token/Vector.png" width={12} height={8}/></TableCell>

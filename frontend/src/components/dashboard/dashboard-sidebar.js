@@ -37,6 +37,11 @@ const getSections = (t) => [
     title: t(''),
     items: [
       {
+        title: t('Progress'),
+        path: '/progress',
+        icon: <HomeIcon fontSize="small" />
+      },
+      {
         title: t('Tokens'),
         path: '/dashboard',
         icon: <HomeIcon fontSize="small" />

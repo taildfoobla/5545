@@ -8,6 +8,7 @@
 
 p{
     margin:0;
+    text-align: center;
 }
 
 
@@ -155,8 +156,8 @@ p{
 
 .token-info{
     position: absolute;
-    top:5px;
-    left:5px;
+    top:35px;
+    left:100px;
     z-index: 99;
     font-size: 13px;
 }
@@ -167,4 +168,23 @@ p{
 
 .token-volume span{
     color:#14B8A6
+}
+
+.chart-info{
+    display:flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    justify-content: center
+}
+
+.chart-info-item{
+    display:flex;
+    gap:8px;
+    align-items: center;
+}
+
+.chart-info-item-color{
+    width: 15px;        
+    height: 15px;
+    border-radius: 50%;       
 }

@@ -22,7 +22,6 @@ import ChartTwo from "../../../../components/dashboard/token/chart-two";
 import ChartThree from "../../../../components/dashboard/token/chart-three";
 import { getScore } from "../../../../components/services/scoreApi";
 
-
 const initialData = [
   { time: "2016-07-18", value: 661.47 },
   { time: "2016-07-25", value: 623.83 },
@@ -177,183 +176,145 @@ const initialData = [
 ];
 
 const volumeData = [
-  { time: "2018-10-19", value: 19103293.0, color: "#26a69a" },
-  { time: "2018-10-22", value: 21737523.0, color: "#26a69a" },
-  { time: "2018-10-23", value: 29328713.0, color: "#26a69a" },
-  { time: "2018-10-24", value: 37435638.0, color: "#26a69a" },
-  { time: "2018-10-25", value: 25269995.0, color: "#ef5350" },
-  { time: "2018-10-26", value: 24973311.0, color: "#ef5350" },
-  { time: "2018-10-29", value: 22103692.0, color: "#26a69a" },
-  { time: "2018-10-30", value: 25231199.0, color: "#26a69a" },
-  { time: "2018-10-31", value: 24214427.0, color: "#ef5350" },
-  { time: "2018-11-01", value: 22533201.0, color: "#ef5350" },
-  { time: "2018-11-02", value: 14734412.0, color: "#26a69a" },
-  { time: "2018-11-05", value: 12733842.0, color: "#26a69a" },
-  { time: "2018-11-06", value: 12371207.0, color: "#26a69a" },
-  { time: "2018-11-07", value: 14891287.0, color: "#26a69a" },
-  { time: "2018-11-08", value: 12482392.0, color: "#26a69a" },
-  { time: "2018-11-09", value: 17365762.0, color: "#26a69a" },
-  { time: "2018-11-12", value: 13236769.0, color: "#26a69a" },
-  { time: "2018-11-13", value: 13047907.0, color: "#ef5350" },
-  { time: "2018-11-14", value: 18288710.0, color: "#26a69a" },
-  { time: "2018-11-15", value: 17147123.0, color: "#26a69a" },
-  { time: "2018-11-16", value: 19470986.0, color: "#26a69a" },
-  { time: "2018-11-19", value: 18405731.0, color: "#26a69a" },
-  { time: "2018-11-20", value: 22028957.0, color: "#ef5350" },
-  { time: "2018-11-21", value: 18482233.0, color: "#ef5350" },
-  { time: "2018-11-23", value: 7009050.0, color: "#ef5350" },
-  { time: "2018-11-26", value: 12308876.0, color: "#26a69a" },
-  { time: "2018-11-27", value: 14118867.0, color: "#26a69a" },
-  { time: "2018-11-28", value: 18662989.0, color: "#ef5350" },
-  { time: "2018-11-29", value: 14763658.0, color: "#ef5350" },
-  { time: "2018-11-30", value: 31142818.0, color: "#26a69a" },
-  { time: "2018-12-03", value: 27795428.0, color: "#ef5350" },
-  { time: "2018-12-04", value: 21727411.0, color: "#ef5350" },
-  { time: "2018-12-06", value: 26880429.0, color: "#ef5350" },
-  { time: "2018-12-07", value: 16948126.0, color: "#ef5350" },
-  { time: "2018-12-10", value: 16603356.0, color: "#26a69a" },
-  { time: "2018-12-11", value: 14991438.0, color: "#26a69a" },
-  { time: "2018-12-12", value: 18892182.0, color: "#ef5350" },
-  { time: "2018-12-13", value: 15454706.0, color: "#ef5350" },
-  { time: "2018-12-14", value: 13960870.0, color: "#ef5350" },
-  { time: "2018-12-17", value: 18902523.0, color: "#ef5350" },
-  { time: "2018-12-18", value: 18895777.0, color: "#ef5350" },
-  { time: "2018-12-19", value: 20968473.0, color: "#26a69a" },
-  { time: "2018-12-20", value: 26897008.0, color: "#ef5350" },
-  { time: "2018-12-21", value: 55413082.0, color: "#ef5350" },
-  { time: "2018-12-24", value: 15077207.0, color: "#ef5350" },
-  { time: "2018-12-26", value: 17970539.0, color: "#26a69a" },
-  { time: "2018-12-27", value: 17530977.0, color: "#26a69a" },
-  { time: "2018-12-28", value: 14771641.0, color: "#26a69a" },
-  { time: "2018-12-31", value: 15331758.0, color: "#26a69a" },
-  { time: "2019-01-02", value: 13969691.0, color: "#ef5350" },
-  { time: "2019-01-03", value: 19245411.0, color: "#26a69a" },
-  { time: "2019-01-04", value: 17035848.0, color: "#26a69a" },
-  { time: "2019-01-07", value: 16348982.0, color: "#26a69a" },
-  { time: "2019-01-08", value: 21425008.0, color: "#26a69a" },
-  { time: "2019-01-09", value: 18136000.0, color: "#ef5350" },
-  { time: "2019-01-10", value: 14259910.0, color: "#26a69a" },
-  { time: "2019-01-11", value: 15801548.0, color: "#26a69a" },
-  { time: "2019-01-14", value: 11342293.0, color: "#26a69a" },
-  { time: "2019-01-15", value: 10074386.0, color: "#26a69a" },
-  { time: "2019-01-16", value: 13411691.0, color: "#ef5350" },
-  { time: "2019-01-17", value: 15223854.0, color: "#ef5350" },
-  { time: "2019-01-18", value: 16802516.0, color: "#26a69a" },
-  { time: "2019-01-22", value: 18284771.0, color: "#ef5350" },
-  { time: "2019-01-23", value: 15109007.0, color: "#26a69a" },
-  { time: "2019-01-24", value: 12494109.0, color: "#ef5350" },
-  { time: "2019-01-25", value: 17806822.0, color: "#ef5350" },
-  { time: "2019-01-28", value: 25955718.0, color: "#ef5350" },
-  { time: "2019-01-29", value: 33789235.0, color: "#ef5350" },
-  { time: "2019-01-30", value: 27260036.0, color: "#26a69a" },
-  { time: "2019-01-31", value: 28585447.0, color: "#26a69a" },
-  { time: "2019-02-01", value: 13778392.0, color: "#ef5350" },
-  { time: "2019-02-04", value: 15818901.0, color: "#ef5350" },
-  { time: "2019-02-05", value: 14124794.0, color: "#26a69a" },
-  { time: "2019-02-06", value: 11391442.0, color: "#ef5350" },
-  { time: "2019-02-07", value: 12436168.0, color: "#ef5350" },
-  { time: "2019-02-08", value: 12011657.0, color: "#26a69a" },
-  { time: "2019-02-11", value: 9802798.0, color: "#26a69a" },
-  { time: "2019-02-12", value: 11227550.0, color: "#26a69a" },
-  { time: "2019-02-13", value: 11884803.0, color: "#26a69a" },
-  { time: "2019-02-14", value: 11190094.0, color: "#ef5350" },
-  { time: "2019-02-15", value: 15719416.0, color: "#26a69a" },
-  { time: "2019-02-19", value: 12272877.0, color: "#26a69a" },
-  { time: "2019-02-20", value: 11379006.0, color: "#26a69a" },
-  { time: "2019-02-21", value: 14680547.0, color: "#26a69a" },
-  { time: "2019-02-22", value: 12534431.0, color: "#26a69a" },
-  { time: "2019-02-25", value: 15051182.0, color: "#ef5350" },
-  { time: "2019-02-26", value: 12005571.0, color: "#ef5350" },
-  { time: "2019-02-27", value: 8962776.0, color: "#26a69a" },
-  { time: "2019-02-28", value: 15742971.0, color: "#26a69a" },
-  { time: "2019-03-01", value: 10942737.0, color: "#26a69a" },
-  { time: "2019-03-04", value: 13674737.0, color: "#ef5350" },
-  { time: "2019-03-05", value: 15749545.0, color: "#ef5350" },
-  { time: "2019-03-06", value: 13935530.0, color: "#ef5350" },
-  { time: "2019-03-07", value: 12644171.0, color: "#26a69a" },
-  { time: "2019-03-08", value: 10646710.0, color: "#26a69a" },
-  { time: "2019-03-11", value: 13627431.0, color: "#26a69a" },
-  { time: "2019-03-12", value: 12812980.0, color: "#ef5350" },
-  { time: "2019-03-13", value: 14168350.0, color: "#26a69a" },
-  { time: "2019-03-14", value: 12148349.0, color: "#26a69a" },
-  { time: "2019-03-15", value: 23715337.0, color: "#26a69a" },
-  { time: "2019-03-18", value: 12168133.0, color: "#ef5350" },
-  { time: "2019-03-19", value: 13462686.0, color: "#ef5350" },
-  { time: "2019-03-20", value: 11903104.0, color: "#26a69a" },
-  { time: "2019-03-21", value: 10920129.0, color: "#26a69a" },
-  { time: "2019-03-22", value: 25125385.0, color: "#26a69a" },
-  { time: "2019-03-25", value: 15463411.0, color: "#26a69a" },
-  { time: "2019-03-26", value: 12316901.0, color: "#26a69a" },
-  { time: "2019-03-27", value: 13290298.0, color: "#26a69a" },
-  { time: "2019-03-28", value: 20547060.0, color: "#ef5350" },
-  { time: "2019-03-29", value: 17283871.0, color: "#26a69a" },
-  { time: "2019-04-01", value: 16331140.0, color: "#ef5350" },
-  { time: "2019-04-02", value: 11408146.0, color: "#ef5350" },
-  { time: "2019-04-03", value: 15491724.0, color: "#26a69a" },
-  { time: "2019-04-04", value: 8776028.0, color: "#26a69a" },
-  { time: "2019-04-05", value: 11497780.0, color: "#26a69a" },
-  { time: "2019-04-08", value: 11680538.0, color: "#26a69a" },
-  { time: "2019-04-09", value: 10414416.0, color: "#ef5350" },
-  { time: "2019-04-10", value: 8782061.0, color: "#26a69a" },
-  { time: "2019-04-11", value: 9219930.0, color: "#ef5350" },
-  { time: "2019-04-12", value: 10847504.0, color: "#26a69a" },
-  { time: "2019-04-15", value: 7741472.0, color: "#ef5350" },
-  { time: "2019-04-16", value: 10239261.0, color: "#26a69a" },
-  { time: "2019-04-17", value: 15498037.0, color: "#ef5350" },
-  { time: "2019-04-18", value: 13189013.0, color: "#26a69a" },
-  { time: "2019-04-22", value: 11950365.0, color: "#26a69a" },
-  { time: "2019-04-23", value: 23488682.0, color: "#ef5350" },
-  { time: "2019-04-24", value: 13227084.0, color: "#ef5350" },
-  { time: "2019-04-25", value: 17425466.0, color: "#ef5350" },
-  { time: "2019-04-26", value: 16329727.0, color: "#26a69a" },
-  { time: "2019-04-29", value: 13984965.0, color: "#26a69a" },
-  { time: "2019-04-30", value: 15469002.0, color: "#26a69a" },
-  { time: "2019-05-01", value: 11627436.0, color: "#ef5350" },
-  { time: "2019-05-02", value: 14435436.0, color: "#26a69a" },
-  { time: "2019-05-03", value: 9388228.0, color: "#26a69a" },
-  { time: "2019-05-06", value: 10066145.0, color: "#ef5350" },
-  { time: "2019-05-07", value: 12963827.0, color: "#ef5350" },
-  { time: "2019-05-08", value: 12086743.0, color: "#ef5350" },
-  { time: "2019-05-09", value: 14835326.0, color: "#26a69a" },
-  { time: "2019-05-10", value: 10707335.0, color: "#26a69a" },
-  { time: "2019-05-13", value: 13759350.0, color: "#ef5350" },
-  { time: "2019-05-14", value: 12776175.0, color: "#ef5350" },
-  { time: "2019-05-15", value: 10806379.0, color: "#26a69a" },
-  { time: "2019-05-16", value: 11695064.0, color: "#26a69a" },
-  { time: "2019-05-17", value: 14436662.0, color: "#26a69a" },
-  { time: "2019-05-20", value: 20910590.0, color: "#26a69a" },
-  { time: "2019-05-21", value: 14016315.0, color: "#26a69a" },
-  { time: "2019-05-22", value: 11487448.0, color: "#ef5350" },
-  { time: "2019-05-23", value: 11707083.0, color: "#ef5350" },
-  { time: "2019-05-24", value: 8755506.0, color: "#26a69a" },
-  { time: "2019-05-28", value: 3097125.0, color: "#26a69a" },
+  { time: { year: 2018, month: 9, day: 22 }, value: 25.531816900940186 },
+  { time: { year: 2018, month: 9, day: 23 }, value: 26.350850429478125 },
+  { time: { year: 2018, month: 9, day: 24 }, value: 25.05218443850655 },
+  { time: { year: 2018, month: 9, day: 25 }, value: 25.41022485894306 },
+  { time: { year: 2018, month: 9, day: 26 }, value: 25.134847363259958 },
+  { time: { year: 2018, month: 9, day: 27 }, value: 24.239250761300525 },
+  { time: { year: 2018, month: 9, day: 28 }, value: 28.8673009313941 },
+  { time: { year: 2018, month: 9, day: 29 }, value: 27.028082380884264 },
+  { time: { year: 2018, month: 9, day: 30 }, value: 27.181577793470662 },
+  { time: { year: 2018, month: 10, day: 1 }, value: 28.658957209998505 },
+  { time: { year: 2018, month: 10, day: 2 }, value: 30.418392247817536 },
+  { time: { year: 2018, month: 10, day: 3 }, value: 26.41825183552505 },
+  { time: { year: 2018, month: 10, day: 4 }, value: 30.0951233353539 },
+  { time: { year: 2018, month: 10, day: 5 }, value: 30.30985059775389 },
+  { time: { year: 2018, month: 10, day: 6 }, value: 30.71612555943148 },
+  { time: { year: 2018, month: 10, day: 7 }, value: 28.222424591003268 },
+  { time: { year: 2018, month: 10, day: 8 }, value: 31.01149570947896 },
+  { time: { year: 2018, month: 10, day: 9 }, value: 30.390225881550307 },
+  { time: { year: 2018, month: 10, day: 10 }, value: 29.451733557312163 },
+  { time: { year: 2018, month: 10, day: 11 }, value: 34.14376900459634 },
+  { time: { year: 2018, month: 10, day: 12 }, value: 30.223333215683407 },
+  { time: { year: 2018, month: 10, day: 13 }, value: 35.1548736041708 },
+  { time: { year: 2018, month: 10, day: 14 }, value: 37.795223779011096 },
+  { time: { year: 2018, month: 10, day: 15 }, value: 38.95966228546306 },
+  { time: { year: 2018, month: 10, day: 16 }, value: 35.59132526195566 },
+  { time: { year: 2018, month: 10, day: 17 }, value: 38.42249768195307 },
+  { time: { year: 2018, month: 10, day: 18 }, value: 40.82520015585623 },
+  { time: { year: 2018, month: 10, day: 19 }, value: 37.401446370157814 },
+  { time: { year: 2018, month: 10, day: 20 }, value: 44.14728329801845 },
+  { time: { year: 2018, month: 10, day: 21 }, value: 43.908512951087765 },
+  { time: { year: 2018, month: 10, day: 22 }, value: 47.139711966410914 },
+  { time: { year: 2018, month: 10, day: 23 }, value: 43.78495537329606 },
+  { time: { year: 2018, month: 10, day: 24 }, value: 46.37910782721347 },
+  { time: { year: 2018, month: 10, day: 25 }, value: 48.280192310089234 },
+  { time: { year: 2018, month: 10, day: 26 }, value: 49.63767420501933 },
+  { time: { year: 2018, month: 10, day: 27 }, value: 43.05752682224708 },
+  { time: { year: 2018, month: 10, day: 28 }, value: 48.32708061157758 },
+  { time: { year: 2018, month: 10, day: 29 }, value: 53.39600337663517 },
+  { time: { year: 2018, month: 10, day: 30 }, value: 46.711006266435355 },
+  { time: { year: 2018, month: 10, day: 31 }, value: 54.13809826985657 },
+  { time: { year: 2018, month: 11, day: 1 }, value: 55.79021790616995 },
+  { time: { year: 2018, month: 11, day: 2 }, value: 49.2873885580548 },
+  { time: { year: 2018, month: 11, day: 3 }, value: 56.97009522871737 },
+  { time: { year: 2018, month: 11, day: 4 }, value: 50.823930530973975 },
+  { time: { year: 2018, month: 11, day: 5 }, value: 54.960060077375076 },
+  { time: { year: 2018, month: 11, day: 6 }, value: 62.0222568413422 },
+  { time: { year: 2018, month: 11, day: 7 }, value: 58.20081640960216 },
+  { time: { year: 2018, month: 11, day: 8 }, value: 65.13004590769961 },
+  { time: { year: 2018, month: 11, day: 9 }, value: 57.78891076252559 },
+  { time: { year: 2018, month: 11, day: 10 }, value: 58.792896124952186 },
+  { time: { year: 2018, month: 11, day: 11 }, value: 61.87890147945707 },
+  { time: { year: 2018, month: 11, day: 12 }, value: 60.93156560716248 },
+  { time: { year: 2018, month: 11, day: 13 }, value: 57.85928164082374 },
+  { time: { year: 2018, month: 11, day: 14 }, value: 70.95139577968187 },
+  { time: { year: 2018, month: 11, day: 15 }, value: 71.59735270974251 },
+  { time: { year: 2018, month: 11, day: 16 }, value: 68.6730845432055 },
+  { time: { year: 2018, month: 11, day: 17 }, value: 70.1298800651962 },
+  { time: { year: 2018, month: 11, day: 18 }, value: 68.82963709012753 },
+  { time: { year: 2018, month: 11, day: 19 }, value: 70.66316240517193 },
+  { time: { year: 2018, month: 11, day: 20 }, value: 67.83320577283186 },
+  { time: { year: 2018, month: 11, day: 21 }, value: 75.08486799785067 },
+  { time: { year: 2018, month: 11, day: 22 }, value: 72.87979342888752 },
+  { time: { year: 2018, month: 11, day: 23 }, value: 78.84973566116827 },
+  { time: { year: 2018, month: 11, day: 24 }, value: 77.59573370643601 },
+  { time: { year: 2018, month: 11, day: 25 }, value: 74.74726921909757 },
+  { time: { year: 2018, month: 11, day: 26 }, value: 69.68128245039887 },
+  { time: { year: 2018, month: 11, day: 27 }, value: 84.2489916330028 },
+  { time: { year: 2018, month: 11, day: 28 }, value: 85.49947753269504 },
+  { time: { year: 2018, month: 11, day: 29 }, value: 79.8486264148003 },
+  { time: { year: 2018, month: 11, day: 30 }, value: 87.69287202402485 },
+  { time: { year: 2018, month: 12, day: 1 }, value: 78.01690218289475 },
+  { time: { year: 2018, month: 12, day: 2 }, value: 90.03789034980372 },
+  { time: { year: 2018, month: 12, day: 3 }, value: 80.8840602849401 },
+  { time: { year: 2018, month: 12, day: 4 }, value: 76.88131503723805 },
+  { time: { year: 2018, month: 12, day: 5 }, value: 80.31060219295262 },
+  { time: { year: 2018, month: 12, day: 6 }, value: 93.94619117220051 },
+  { time: { year: 2018, month: 12, day: 7 }, value: 94.87133202008548 },
+  { time: { year: 2018, month: 12, day: 8 }, value: 82.60328626838404 },
+  { time: { year: 2018, month: 12, day: 9 }, value: 97.16768398118845 },
+  { time: { year: 2018, month: 12, day: 10 }, value: 86.28219316727935 },
+  { time: { year: 2018, month: 12, day: 11 }, value: 88.98768390749808 },
+  { time: { year: 2018, month: 12, day: 12 }, value: 86.9799632094888 },
+  { time: { year: 2018, month: 12, day: 13 }, value: 94.84612878449812 },
+  { time: { year: 2018, month: 12, day: 14 }, value: 102.1160216124386 },
+  { time: { year: 2018, month: 12, day: 15 }, value: 87.0646295567293 },
+  { time: { year: 2018, month: 12, day: 16 }, value: 88.48802912330535 },
+  { time: { year: 2018, month: 12, day: 17 }, value: 89.68490260440238 },
+  { time: { year: 2018, month: 12, day: 18 }, value: 86.66224375818467 },
+  { time: { year: 2018, month: 12, day: 19 }, value: 88.05916917094234 },
+  { time: { year: 2018, month: 12, day: 20 }, value: 78.96513176162487 },
+  { time: { year: 2018, month: 12, day: 21 }, value: 90.54239307317953 },
+  { time: { year: 2018, month: 12, day: 22 }, value: 92.40550159209458 },
+  { time: { year: 2018, month: 12, day: 23 }, value: 82.47365747958841 },
+  { time: { year: 2018, month: 12, day: 24 }, value: 91.55327647717618 },
+  { time: { year: 2018, month: 12, day: 25 }, value: 89.34790162747024 },
+  { time: { year: 2018, month: 12, day: 26 }, value: 85.68927849920716 },
+  { time: { year: 2018, month: 12, day: 27 }, value: 85.86795553966918 },
+  { time: { year: 2018, month: 12, day: 28 }, value: 90.55358282944198 },
+  { time: { year: 2018, month: 12, day: 29 }, value: 91.28939932554621 },
+  { time: { year: 2018, month: 12, day: 30 }, value: 100.90495261248472 },
+  { time: { year: 2018, month: 12, day: 31 }, value: 98.99348823473713 },
 ];
 
 function TokenDetail() {
   const router = useRouter();
-  const symbol = router.query.tokenId
-  const name = router.query.name
-  const { data:score}=useSWR(`symbol/${symbol}`,getScore)
-  console.log(symbol)
-  if(score){
-   console.log(score)
+  const symbol = router.query.tokenId;
+  const name = router.query.name;
+  const { data: score } = useSWR(`symbol/${symbol}`, getScore);
+  console.log(symbol);
+  if (score) {
+    console.log(score);
   }
-  let scoreData=[]
-
-  if(score){
-   scoreData=score.map(item=>{
-      const itemTime= item.block_date.split("").slice(0,10).join("")
-      const itemValue=item.price
-      return{
-        time:itemTime,
-        value:itemValue
+  let scoreData = [];
+  let atsData=[];
+  if (score) {
+   score.forEach((item) => {
+      const itemTime = item.block_date.split("").slice(0, 10).join("");
+      const itemValue = item.price;
+      const atsValue= item.accumulation_trend_score;
+      console.log(atsValue);
+      if (itemTime !== undefined && itemValue !== null) {
+        const scoreObject= {
+          time: itemTime,
+          value: itemValue,
+        };
+        scoreData.push(scoreObject)
       }
-    })
-  scoreData=scoreData.reverse()
+      if(itemTime!==undefined&& atsValue!==undefined){
+        const atsObject= {
+          time: itemTime,
+          value: atsValue,
+        };
+        atsData.push(atsObject)
+      }
+    });
   }
-  
-console.log(scoreData)
 
+  console.log(scoreData);
+console.log(atsData);
   const backToPrevPage = (link) => {
     router.push(link);
   };
@@ -373,8 +334,10 @@ console.log(scoreData)
           <Box sx={{ mb: 4 }}>
             <Grid container justifyContent="space-between" spacing={3}>
               <Grid item display={"flex"} alignItems={"center"} gap={"5px"}>
-                <Image width={45} height={45} src="/static/token/image 2.png"/>
-                <Typography variant="h4">{name} <span className="link">{symbol}</span> </Typography>
+                <Image width={45} height={45} src="/static/token/image 2.png" />
+                <Typography variant="h4">
+                  {name} <span className="link">{symbol}</span>{" "}
+                </Typography>
               </Grid>
             </Grid>
             <Breadcrumbs maxItems={3} aria-label="breadcrumb">
@@ -431,7 +394,13 @@ console.log(scoreData)
               </Grid> */}
               <Grid item xs={12}>
                 {" "}
-                <ChartTwo data={scoreData} volumeData={volumeData} name={name} symbol={symbol} />{" "}
+                <ChartTwo
+                  data={scoreData}
+                  volumeData={volumeData}
+                  atsData={atsData}
+                  name={name}
+                  symbol={symbol}
+                />{" "}
               </Grid>
               {/* <Grid item xs={12}>
                 <ChartThree data={initialData} volumeData={volumeData}/>

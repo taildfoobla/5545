@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import useSWR from "swr";
+import { useRouter } from "next/router";
 import {
   Box,
   Button,
@@ -16,41 +17,16 @@ import {
   Breadcrumbs,
   Link
 } from "@mui/material";
-import { tokenApi } from "../../__fake-api__/token-api";
-import { customerApi } from "../../__fake-api__/customer-api";
 import { AuthGuard } from "../../components/authentication/auth-guard";
 import { DashboardLayout } from "../../components/dashboard/dashboard-layout";
-import { CustomerListTable } from "../../components/dashboard/customer/customer-list-table";
 import { TokenListTable } from "../../components/dashboard/token/token-list-table";
 import { useMounted } from "../../hooks/use-mounted";
-import { Download as DownloadIcon } from "../../icons/download";
-import { Plus as PlusIcon } from "../../icons/plus";
 import { Search as SearchIcon } from "../../icons/search";
-import { Upload as UploadIcon } from "../../icons/upload";
 import { gtm } from "../../lib/gtm";
-import axios from 'axios';
-import { getTokens as getList,tokensUrlEndpoint } from "../../components/services/tokensApi";
-import { getScore } from "../../components/services/scoreApi";
+import { getTokens as getList} from "../../components/services/tokensApi";
+import { useDispatch,useSelector } from "../../store";
+import { tokenActions } from "../../slices/token";
 
-
-const tabs = [
-  {
-    label: "All",
-    value: "all",
-  },
-  {
-    label: "Accepts Marketing",
-    value: "hasAcceptedMarketing",
-  },
-  {
-    label: "Prospect",
-    value: "isProspect",
-  },
-  {
-    label: "Returning",
-    value: "isReturning",
-  },
-];
 
 const sortOptions = [
   {
@@ -147,7 +123,11 @@ const applyPagination = (customers, page, rowsPerPage) =>
   customers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage);
 
 const CustomerList = () => {
-  const {data:tokens}=useSWR('/tokens',getList)
+  const dispatch = useDispatch();
+  const { search } = useSelector((state) => state.token)||"";
+  const router=useRouter();
+  console.log(search)
+  const {data:tokens}=useSWR(`/tokens?search=${search}`,getList);
   const isMounted = useMounted();
   const queryRef = useRef(null);
   // const [tokens, setTokens] = useState([]);
@@ -166,27 +146,25 @@ console.log(tokens)
     gtm.push({ event: "page_view" });
   }, []);
 
-//   const getTokens = useCallback(async () => {
-//     try {
-//       const data = await tokenApi.getTokens();
-// const dataRaw =await axios.get("http://localhost:5000/tokens")
-// console.log(dataRaw.data)
-//       if (isMounted()) {
-//         console.log(1)
-//         setTokens(dataRaw.data);
-//       }
-//     } catch (err) {
-//       console.error(err);
-//     }
-//   }, [isMounted]);
+  useEffect(()=>{
+    const {search}=router.query
+    dispatch(tokenActions.changeSearch(search))
+  },[])
 
-//   useEffect(
-//     () => {
-//       getTokens();
-//     },
-//     // eslint-disable-next-line react-hooks/exhaustive-deps
-//     []
-//   );
+let delay=null;
+
+  const handleChangeSearch=(e)=>{
+    const value = e.target.value
+    clearTimeout(delay)
+    delay=setTimeout(()=>{
+      router.push({
+        pathname:"/dashboard",
+        query:{search:value}
+      })
+      dispatch(tokenActions.changeSearch(value))
+    },500)
+   
+  }
 
   const handleTabsChange = (event, value) => {
     const updatedFilters = {
@@ -280,12 +258,15 @@ console.log(tokens)
                   inputProps={{ ref: queryRef }}
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment position="start">
+                      <InputAdornment position="start" >
                         <SearchIcon fontSize="small" />
                       </InputAdornment>
                     ),
                   }}
                   placeholder="Search tokens"
+                  onChange={(e)=>{
+                    console.log("dasdasdas")
+                    handleChangeSearch(e)}}
                 />
               </Box>
             </Box>
