@@ -206,7 +206,6 @@ const CustomerList = () => {
       if (i == 0 || i == 1) {
         sortToken.push(tokens[i]);
       } else {
-        console.log(sortToken);
         for (let j = 0; j < sortToken.length; j++) {
           if (!sortToken.includes(tokens[i])) {
          if(tokens[i].symbol===sortToken[j].symbol){
@@ -222,7 +221,6 @@ const CustomerList = () => {
     }
   }
 
-  console.log(sortToken);
 
   const filteredTokens = sortToken ? applyFilters(sortToken, filters) : [];
   const sortedTokens = applySort(filteredTokens, sort);

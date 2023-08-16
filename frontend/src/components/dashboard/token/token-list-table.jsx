@@ -26,11 +26,10 @@ import { getInitials } from "../../../utils/get-initials";
 import { Scrollbar } from "../../scrollbar";
 import Image from "next/image";
 import Star from "../../../../public/static/icons/star.svg";
-
-
+import { getScore } from "../../services/scoreApi";
 
 export const TokenListTable = (props) => {
-  const router = useRouter()
+  const router = useRouter();
   const theme = useTheme();
   const {
     tokens,
@@ -53,6 +52,24 @@ export const TokenListTable = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [tokens]
   );
+
+  const getDetailScore = async (symbol, variant) => {
+    const res = await getScore(`symbol/${symbol}`);
+    const reverseData = res.reverse();
+    if(variant==="ats"){
+      if(reverseData[0].accumulation_trend_score){
+        return reverseData[0].accumulation_trend_score
+      }else{
+        return ""
+      }
+    }else{
+      if(reverseData[0].price){
+        return reverseData[0].price
+      }else{
+        return ""
+      }
+    }
+  };
 
   const handleSelectAllTokens = (event) => {
     setSelectedTokens(
@@ -77,9 +94,9 @@ export const TokenListTable = (props) => {
     return number * 100;
   };
 
-  const goToTokenDetail = (symbol,name)=>{
-    router.push(`/dashboard/tokens/${symbol}?name=${name}`)
-  }
+  const goToTokenDetail = (symbol, name) => {
+    router.push(`/dashboard/tokens/${symbol}?name=${name}`);
+  };
 
   const enableBulkActions = selectedTokens.length > 0;
   const selectedSomeTokens =
@@ -173,8 +190,14 @@ export const TokenListTable = (props) => {
               <TableCell padding="0">#</TableCell>
               <TableCell>NAME</TableCell>
               <TableCell align="right">PRICE</TableCell>
-              <TableCell align="right" style={{minWidth:"80px"}}>ATS <Image src="/static/token/Vector.png" width={12} height={8}/></TableCell>
-              <TableCell align="right">RSI <Image src="/static/token/Vector.png" width={12} height={8}/> </TableCell>
+              <TableCell align="right" style={{ minWidth: "80px" }}>
+                ATS{" "}
+                <Image src="/static/token/Vector.png" width={12} height={8} />
+              </TableCell>
+              <TableCell align="right">
+                RSI{" "}
+                <Image src="/static/token/Vector.png" width={12} height={8} />{" "}
+              </TableCell>
               <TableCell align="center">Fear & Greed INDex</TableCell>
               <TableCell align="center">CEX RATIO</TableCell>
               <TableCell align="right">CEX INFLOW</TableCell>
@@ -195,7 +218,9 @@ export const TokenListTable = (props) => {
                       height={24}
                     />
                   </TableCell>
-                  <TableCell padding="checkbox">{(page)*(rowsPerPage) + index + 1}</TableCell>
+                  <TableCell padding="checkbox">
+                    {page * rowsPerPage + index + 1}
+                  </TableCell>
                   <TableCell>
                     <Box
                       sx={{
@@ -213,10 +238,15 @@ export const TokenListTable = (props) => {
                         {getInitials(token.name)}
                       </Avatar>
                       <Box sx={{ ml: 1 }}>
-                        <p href="/tokens/1" style={{cursor:"pointer"}} onClick={()=>{
-                          goToTokenDetail(token.symbol,token.name)
-                        }} >
-                          {token.name} <span className="link">{token.symbol}</span>
+                        <p
+                          href="/tokens/1"
+                          style={{ cursor: "pointer" }}
+                          onClick={() => {
+                            goToTokenDetail(token.symbol, token.name);
+                          }}
+                        >
+                          {token.name}{" "}
+                          <span className="link">{token.symbol}</span>
                         </p>
                         <div className="small-icon">
                           <Image
@@ -235,18 +265,17 @@ export const TokenListTable = (props) => {
                   </TableCell>
                   <TableCell align="right">
                     ${token.price}
-                    <p className="percent-price">+90%</p>
+                    <p className="percent-price"></p>
                   </TableCell>
                   <TableCell padding={0} align="right">
-                    <p className="ats">{token.accumulation_trend_score_left}</p>
+                    <p className="ats"></p>
                   </TableCell>
                   <TableCell align="right">
-                   74
-                    <p className="rsi-status">Overbuy</p>
+                    <p className="rsi-status"></p>
                   </TableCell>
                   <TableCell>
-                    <div className="fear-greed-index">
-                      <div className="fear-greed-text fear">Extremely Fear</div>
+                    {/* <div className="fear-greed-index">
+                      <div className="fear-greed-text fear"></div>
                       <div className="progress-wrapper">
                         <div
                           className="progress"
@@ -258,36 +287,34 @@ export const TokenListTable = (props) => {
                         ></div>
                       </div>
                       <p className="fear">12</p>
-                    </div>
+                    </div> */}
                   </TableCell>
                   <TableCell align="center" width={200}>
-                    <div className="cex-progress-wrapper">
+                    {/* <div className="cex-progress-wrapper">
                       <div
                         className="cex-progress"
                         style={{ width: `${calcProgressCex(0.54)}%` }}
                       ></div>
                     </div>
-                    <p className="cex-ratio">{0.54 * 100}%</p>
+                    <p className="cex-ratio">{0.54 * 100}%</p> */}
                   </TableCell>
-                  <TableCell align="right" >
+                  <TableCell align="right">
                     {" "}
-                    <p>+34M</p>
-                    <p className="total">$10000</p>
+                    <p></p>
+                    <p className="total"></p>
                   </TableCell>
                   <TableCell align="right">
-                    <p>-34M</p>
-                    <p className="total">$10000</p>
+                    <p></p>
+                    <p className="total"></p>
                   </TableCell>
                   <TableCell align="right">
-                
-                      <Chart
+                    <Chart
                       width={300}
-                        height={120}
-                        options={chartOptions}
-                        series={chartSeries}
-                        type="area"
-                      />
-                  
+                      height={120}
+                      options={chartOptions}
+                      series={chartSeries}
+                      type="area"
+                    />
                   </TableCell>
                 </TableRow>
               );

@@ -203,7 +203,28 @@ let delay=null;
   };
 
   // Usually query is done on backend with indexing solutions
-  const filteredTokens = tokens?applyFilters(tokens, filters):[];
+ let sortToken = [];
+  if (tokens) {
+    for (let i = 0; i < tokens.length; i++) {
+      if (i == 0 || i == 1) {
+        sortToken.push(tokens[i]);
+      } else {
+        for (let j = 0; j < sortToken.length; j++) {
+          if (!sortToken.includes(tokens[i])) {
+         if(tokens[i].symbol===sortToken[j].symbol){
+          sortToken.splice(j+1,0,tokens[i])
+         }else{
+          if(j===sortToken.length-1){
+            sortToken.push(tokens[i])
+          }
+         }
+          }
+        }
+      }
+    }
+  }
+
+  const filteredTokens = sortToken?applyFilters(sortToken, filters):[];
   const sortedTokens = applySort(filteredTokens, sort);
   const paginatedTokens = applyPagination(sortedTokens, page, rowsPerPage);
 
