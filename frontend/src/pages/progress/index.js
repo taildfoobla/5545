@@ -15,7 +15,7 @@ import {
   TextField,
   Typography,
   Breadcrumbs,
-  Link
+  Link,
 } from "@mui/material";
 import { AuthGuard } from "../../components/authentication/auth-guard";
 import { DashboardLayout } from "../../components/dashboard/dashboard-layout";
@@ -23,10 +23,9 @@ import { ProgressListTable } from "../../components/dashboard/progress/progress-
 import { useMounted } from "../../hooks/use-mounted";
 import { Search as SearchIcon } from "../../icons/search";
 import { gtm } from "../../lib/gtm";
-import { getTokens as getList} from "../../components/services/tokensApi";
-import { useDispatch,useSelector } from "../../store";
+import { getTokens as getList } from "../../components/services/tokensApi";
+import { useDispatch, useSelector } from "../../store";
 import { tokenActions } from "../../slices/token";
-
 
 const sortOptions = [
   {
@@ -124,10 +123,10 @@ const applyPagination = (customers, page, rowsPerPage) =>
 
 const CustomerList = () => {
   const dispatch = useDispatch();
-  const { search } = useSelector((state) => state.token)||"";
-  const router=useRouter();
-  console.log(search)
-  const {data:tokens}=useSWR(`/tokens?search=${search}`,getList);
+  const { search } = useSelector((state) => state.token) || "";
+  const router = useRouter();
+  console.log(search);
+  const { data: tokens } = useSWR(`/tokens?search=${search}`, getList);
   const isMounted = useMounted();
   const queryRef = useRef(null);
   // const [tokens, setTokens] = useState([]);
@@ -141,30 +140,29 @@ const CustomerList = () => {
     isProspect: undefined,
     isReturning: undefined,
   });
-console.log(tokens)
+  console.log(tokens);
   useEffect(() => {
     gtm.push({ event: "page_view" });
   }, []);
 
-  useEffect(()=>{
-    const {search}=router.query
-    dispatch(tokenActions.changeSearch(search))
-  },[])
+  useEffect(() => {
+    const { search } = router.query;
+    dispatch(tokenActions.changeSearch(search));
+  }, []);
 
-let delay=null;
+  let delay = null;
 
-  const handleChangeSearch=(e)=>{
-    const value = e.target.value
-    clearTimeout(delay)
-    delay=setTimeout(()=>{
+  const handleChangeSearch = (e) => {
+    const value = e.target.value;
+    clearTimeout(delay);
+    delay = setTimeout(() => {
       router.push({
-        pathname:"/progress",
-        query:{search:value}
-      })
-      dispatch(tokenActions.changeSearch(value))
-    },500)
-   
-  }
+        pathname: "/progress",
+        query: { search: value },
+      });
+      dispatch(tokenActions.changeSearch(value));
+    }, 500);
+  };
 
   const handleTabsChange = (event, value) => {
     const updatedFilters = {
@@ -201,9 +199,32 @@ let delay=null;
   const handleRowsPerPageChange = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
   };
-
   // Usually query is done on backend with indexing solutions
-  const filteredTokens = tokens?applyFilters(tokens, filters):[];
+  let sortToken = [];
+  if (tokens) {
+    for (let i = 0; i < tokens.length; i++) {
+      if (i == 0 || i == 1) {
+        sortToken.push(tokens[i]);
+      } else {
+        console.log(sortToken);
+        for (let j = 0; j < sortToken.length; j++) {
+          if (!sortToken.includes(tokens[i])) {
+         if(tokens[i].symbol===sortToken[j].symbol){
+          sortToken.splice(j+1,0,tokens[i])
+         }else{
+          if(j===sortToken.length-1){
+            sortToken.push(tokens[i])
+          }
+         }
+          }
+        }
+      }
+    }
+  }
+
+  console.log(sortToken);
+
+  const filteredTokens = sortToken ? applyFilters(sortToken, filters) : [];
   const sortedTokens = applySort(filteredTokens, sort);
   const paginatedTokens = applyPagination(sortedTokens, page, rowsPerPage);
 
@@ -258,15 +279,16 @@ let delay=null;
                   inputProps={{ ref: queryRef }}
                   InputProps={{
                     startAdornment: (
-                      <InputAdornment position="start" >
+                      <InputAdornment position="start">
                         <SearchIcon fontSize="small" />
                       </InputAdornment>
                     ),
                   }}
                   placeholder="Search tokens"
-                  onChange={(e)=>{
-                    console.log("dasdasdas")
-                    handleChangeSearch(e)}}
+                  onChange={(e) => {
+                    console.log("dasdasdas");
+                    handleChangeSearch(e);
+                  }}
                 />
               </Box>
             </Box>

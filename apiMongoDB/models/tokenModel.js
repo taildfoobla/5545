@@ -56,7 +56,7 @@ const tokenSchema = mongoose.Schema(
         timestamps:true,
     }
 );
-tokenSchema.index({name: 'text', 'symbol': 'text'});
+tokenSchema.index({'symbol': 'text'});
 
 const Token = mongoose.model('Token',tokenSchema);
 

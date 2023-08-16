@@ -1,6 +1,5 @@
 const Token = require("../models/tokenModel");
 
-
 const pool = require("../db");
 const { default: mongoose } = require("mongoose");
 
@@ -17,16 +16,12 @@ class TokenController {
 
       let tokens = [];
       if (search === "undefined" || search === "") {
-      
         tokens = await Token.find({});
       } else {
         // Token.index({ "name": "text", "symbol": "text" });
         tokens = await Token.find({
-          $text: {
-            $search: search
-          },
+          symbol: new RegExp(`${search}`, 'i')
         });
-        console.log("tokens", tokens);
       }
 
       res.status(200).json(tokens);

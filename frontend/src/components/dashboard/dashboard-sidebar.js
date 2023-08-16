@@ -39,7 +39,7 @@ const getSections = (t) => [
       {
         title: t('Progress'),
         path: '/progress',
-        icon: <HomeIcon fontSize="small" />
+        icon: <OfficeBuildingIcon fontSize="small" />
       },
       {
         title: t('Tokens'),

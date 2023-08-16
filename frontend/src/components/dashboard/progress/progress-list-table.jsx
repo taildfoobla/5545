@@ -128,7 +128,6 @@ export const ProgressListTable = (props) => {
       data: [90, 32, 2, 22, 90, 33, 25, 8, 1, 21, 21, -100],
     },
   ];
-
   return (
     <div {...other}>
       <div className="token-filter-wrapper">
@@ -195,7 +194,7 @@ export const ProgressListTable = (props) => {
           <TableBody>
             {tokens.map((token, index) => {
               const isTokenSelected = selectedTokens.includes(token.id);
-
+            
               return (
                 <TableRow hover key={token.id} selected={isTokenSelected}>
                   <TableCell padding="checkbox">{token._id}</TableCell>
@@ -232,26 +231,26 @@ export const ProgressListTable = (props) => {
                       </Box>
                     </Box>
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell align="center">
                     <p className="percent-price">{token.network}</p>
                   </TableCell>
-                  <TableCell padding={0} align="right">
+                  <TableCell padding={0} align="center">
                     <div className="cex-progress-wrapper">
                       <div
                         className="cex-progress"
-                        style={{ width: `${calcProgressCex(0.54)}%` }}
+                        style={{ width: `${calcProgressCex(1-token.holder_day_left/token.total_days)}%` }}
                       ></div>
                     </div>
-                    <p className="cex-ratio">{0.54 * 100}%</p>
+                    <p className="cex-ratio">{Math.floor((1-token.holder_day_left/token.total_days) * 100)}%</p>
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell align="center">
                     <div className="cex-progress-wrapper">
                       <div
                         className="cex-progress"
-                        style={{ width: `${calcProgressCex(0.54)}%` }}
+                        style={{ width: `${calcProgressCex(1-token.accumulation_trend_score_left/token.total_days)}%` }}
                       ></div>
                     </div>
-                    <p className="cex-ratio">{0.54 * 100}%</p>
+                    <p className="cex-ratio">{Math.floor((1-token.accumulation_trend_score_left/token.total_days) * 100)}%</p>
                   </TableCell>
                   <TableCell algin="center">
                     <p>{token.accumulation_trend_score_left}</p>
@@ -259,12 +258,12 @@ export const ProgressListTable = (props) => {
                   <TableCell align="center">{token.holder_day_left}</TableCell>
                   <TableCell align="right">
                     {" "}
-                    <p>+34M</p>
-                    <p className="total">$10000</p>
+                    <p>{token.total_days}</p>
+                    {/* <p className="total">$10000</p> */}
                   </TableCell>
                   <TableCell align="right">
-                    <p>-34M</p>
-                    <p className="total">$10000</p>
+                    <p>{token.holder_at.split("").slice(0,10).join("")}</p>
+                    {/* <p className="total">$10000</p> */}
                   </TableCell>
                 </TableRow>
               );
